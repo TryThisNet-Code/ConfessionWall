@@ -12,7 +12,12 @@
 
     </div>
     <div id="confessionList">
-
+        <?php foreach($confessions as $conf): ?>
+            <div class="confession">
+                <p><?= nl2br(htmlspecialchars($conf['confessions']))?></p>
+                <small>Posted at: <?= htmlspecialchars($conf['date'])?></small>
+            </div>
+        <?php endforeach; ?>
     </div>
     <script>
         function sendConfession(){
