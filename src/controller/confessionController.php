@@ -3,14 +3,14 @@
         public function showWall(){
             require_once __DIR__ . '/../models/confession.php';
             $confession = new Confession();
-            $confession = $confession->showAll();
+            $confessions = $confession->showAll();
             include __DIR__ . '/../views/confession_form.php';
         }
 
         public function postConfession(){
             $data = json_decode(file_get_contents('php://input'), true);
 
-            if(!empty($data['message']) || strlen($data['message'])){
+            if(empty($data['message']) || strlen($data['message']) < 20 ){
                 http_response_code(422);
                 echo json_encode(['success' => false, 'message' => 'Confession must be atleast 20 characters']);
                 return;

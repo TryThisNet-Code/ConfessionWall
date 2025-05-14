@@ -32,8 +32,8 @@
 
             fetch("", {
                 method: "POST",
-                body: {"Content-Type":"application/json"},
-                header: JSON.stringify({message : confession})
+                headers: {"Content-Type":"application/json"},
+                body: JSON.stringify({message : confession})
             })
             .then(res => res.json())
             .then(data => {
@@ -41,7 +41,7 @@
                 feedback.style.color = data.success ? "green" : "red";
 
                 if(data.success){
-                    document.getElementById("confessionList").value = "";
+                    document.getElementById("confession").value = "";
                     const newConf = document.createElement("div");
                     newConf.classList.add("confession");
                     newConf.innerHTML = `<p> ${data.entry.message}</p>
